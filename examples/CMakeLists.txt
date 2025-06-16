@@ -18,6 +18,7 @@ if (EMSCRIPTEN)
 else()
     # my stuff
     add_subdirectory(demo)
+    add_subdirectory(hidden-states)
 
     add_subdirectory(batched-bench)
     add_subdirectory(batched)

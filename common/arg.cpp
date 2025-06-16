@@ -463,7 +463,8 @@ static void common_params_print_completion(common_params_context & ctx_arg) {
         "llama-speculative-simple",
         "llama-tokenize",
         "llama-tts",
-        "llama-vdot"
+        "llama-vdot",
+        "llama-hidden-states"
     };
 
     for (const auto& exe : executables) {
@@ -1863,7 +1864,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
             params.cvector_outfile = value;
             params.lora_outfile = value;
         }
-    ).set_examples({LLAMA_EXAMPLE_IMATRIX, LLAMA_EXAMPLE_CVECTOR_GENERATOR, LLAMA_EXAMPLE_EXPORT_LORA}));
+    ).set_examples({LLAMA_EXAMPLE_IMATRIX, LLAMA_EXAMPLE_CVECTOR_GENERATOR, LLAMA_EXAMPLE_EXPORT_LORA, LLAMA_EXAMPLE_HIDDEN_STATES}));
     add_opt(common_arg(
         {"-ofreq", "--output-frequency"}, "N",
         string_format("output the imatrix every N iterations (default: %d)", params.n_out_freq),

@@ -118,7 +118,7 @@ static void ggml_print_tensor_to_csv(std::ostream& csv, uint8_t * data, size_t i
  * @param user_data user data to pass at each call back
  * @return true to receive data or continue the graph, false otherwise
  */
-static bool ggml_debug(struct ggml_tensor * t, bool ask, void * user_data) {
+static bool ggml_eval_layer_output(struct ggml_tensor * t, bool ask, void * user_data) {
     static size_t id = 0;
     auto * cb_data = (callback_data *) user_data;
 
@@ -190,7 +190,7 @@ int main(int argc, char ** argv) {
 
     // pass the callback to the backend scheduler
     // it will be executed for each node during the graph computation
-    params.cb_eval = ggml_debug;
+    params.cb_eval = ggml_eval_layer_output;
     params.cb_eval_user_data = &cb_data;
     params.warmup = false;
 

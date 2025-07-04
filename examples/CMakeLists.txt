@@ -17,7 +17,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 if (EMSCRIPTEN)
 else()
     # my stuff
-    add_subdirectory(demo)
     add_subdirectory(hidden-states)
 
     add_subdirectory(batched-bench)

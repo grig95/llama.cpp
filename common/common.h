@@ -82,6 +82,8 @@ enum llama_example {
     LLAMA_EXAMPLE_TTS,
 
     LLAMA_EXAMPLE_COUNT,
+
+    LLAMA_EXAMPLE_HIDDEN_STATES
 };
 
 enum common_sampler_type {

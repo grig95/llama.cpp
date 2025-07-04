@@ -2804,6 +2804,9 @@ struct llm_build_context {
             // output layer norm
             cur = llm_build_norm(ctx0, cur, hparams, model.layers[il].layer_out_norm, model.layers[il].layer_out_norm_b, LLM_NORM, cb, il);
 
+            // name the last tensor in the layer so llama-hidden-states can identify it
+            cb(cur, "l_out", il);
+
             // input for next layer
             inpL = cur;
         }
@@ -8048,6 +8051,9 @@ struct llm_build_context {
                     } break;
                 default: GGML_ABORT("unknown posnet layer");
             };
+
+            // name the last tensor in the layer so llama-hidden-states can identify it
+            cb(cur, "posnet_out", il);
         }
 
         cur = ggml_cont(ctx0, ggml_transpose(ctx0, cur));
@@ -8089,6 +8095,9 @@ struct llm_build_context {
             cur = ggml_cont(ctx0, ggml_transpose(ctx0, cur));
 
             inpL = ggml_add(ctx0, cur, inpL);
+
+            // name the last tensor in the layer so llama-hidden-states can identify it
+            cb(inpL, "convnext_out", il);
         }
 
         cur = inpL;
